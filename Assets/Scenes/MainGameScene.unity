@@ -318,7 +318,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -525,7 +525,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -549,7 +549,6 @@ GameObject:
   - component: {fileID: 443905935}
   - component: {fileID: 443905934}
   - component: {fileID: 443905933}
-  - component: {fileID: 443905937}
   m_Layer: 5
   m_Name: PC_UI
   m_TagString: Untagged
@@ -646,33 +645,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &443905937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443905932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de59bdd54b595d48a3533eb5082ea4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 1748402563}
-  - {fileID: 440603596}
-  - {fileID: 112117817}
-  - {fileID: 1442012973}
-  - {fileID: 1425333869}
-  - {fileID: 891628182}
-  - {fileID: 1330879413}
-  - {fileID: 1101530567}
-  - {fileID: 1616919054}
-  XSprite: {fileID: 21300000, guid: ae14ea541a0e76f48927c8a43c84115b, type: 3}
-  OSprite: {fileID: 21300000, guid: 5ab04157558ac0c4db53d164445d95f4, type: 3}
-  WinPanel: {fileID: 670273863}
-  resultText: {fileID: 1695929418}
-  chooseMarkerPanel: {fileID: 1538224894}
 --- !u!1 &484335414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,12 +1018,12 @@ GameObject:
   - component: {fileID: 670273866}
   - component: {fileID: 670273865}
   m_Layer: 5
-  m_Name: VirusMessage
+  m_Name: EndGameVirusMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &670273864
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1123,7 +1095,7 @@ GameObject:
   - component: {fileID: 761264097}
   - component: {fileID: 761264096}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: restartButton_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1168,7 +1140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Try again ?
+  m_text: Try again?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1440,7 +1412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -1900,7 +1872,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -2301,7 +2273,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: ChoosePlayerX
         m_Mode: 1
@@ -2433,7 +2405,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -2791,7 +2763,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -2923,7 +2895,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -3056,7 +3028,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: ChoosePlayerO
         m_Mode: 1
@@ -3284,7 +3256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -3365,7 +3337,7 @@ GameObject:
   - component: {fileID: 1695929419}
   - component: {fileID: 1695929418}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: end_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3607,7 +3579,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 443905937}
+      - m_Target: {fileID: 2038018315}
         m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 2
@@ -4013,6 +3985,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944194736}
   m_CullTransparentMesh: 1
+--- !u!1 &2038018314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038018316}
+  - component: {fileID: 2038018315}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2038018315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038018314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de59bdd54b595d48a3533eb5082ea4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 1748402563}
+  - {fileID: 440603596}
+  - {fileID: 112117817}
+  - {fileID: 1442012973}
+  - {fileID: 1425333869}
+  - {fileID: 891628182}
+  - {fileID: 1330879413}
+  - {fileID: 1101530567}
+  - {fileID: 1616919054}
+  XSprite: {fileID: 21300000, guid: ae14ea541a0e76f48927c8a43c84115b, type: 3}
+  OSprite: {fileID: 21300000, guid: 5ab04157558ac0c4db53d164445d95f4, type: 3}
+  defaultSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  WinPanel: {fileID: 670273863}
+  resultText: {fileID: 1695929418}
+  chooseMarkerPanel: {fileID: 1538224894}
+--- !u!4 &2038018316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038018314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 432.35345, y: 269.22345, z: -0.87932914}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2105489976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4172,7 +4204,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2141414717}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2038018315}
+        m_TargetAssemblyTypeName: TicTacToe_Logic, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2141414717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4217,5 +4261,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1411198708}
   - {fileID: 1829709600}
+  - {fileID: 2038018316}
   - {fileID: 443905936}
   - {fileID: 961823098}

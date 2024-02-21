@@ -11,8 +11,11 @@ public class TicTacToe_Logic : MonoBehaviour
     public Button[] buttons;
     public Sprite XSprite;
     public Sprite OSprite;
+    public Sprite defaultSprite;
+
     private Sprite playerSprite;
     private Sprite npcSprite;
+
     private bool playerTurn = true;
 
     ////Win Panel
@@ -37,10 +40,7 @@ public class TicTacToe_Logic : MonoBehaviour
 
         chooseMarkerPanel.SetActive(false);
         EnableButtons();
-        if (!playerTurn)
-        {
-            Invoke("NPCMove", 1f); // NPC moves after a delay
-        }
+        
     }
 
     public void ChoosePlayerO()
@@ -52,10 +52,7 @@ public class TicTacToe_Logic : MonoBehaviour
 
         chooseMarkerPanel.SetActive(false);
         EnableButtons();
-        if (!playerTurn)
-        {
-            Invoke("NPCMove", 1f); // NPC moves after a delay
-        }
+        
     }
 
     void EnableButtons()
@@ -77,12 +74,14 @@ public class TicTacToe_Logic : MonoBehaviour
             if (CheckForWin(playerSprite))
             {
                 DisableAllButtons();
-                resultText.text = "Player Wins!";
-                
+                WinPanel.SetActive(true);
+                resultText.text = "Player Wins!"; 
                 return;
             }
             else if (CheckForDraw())
             {
+                DisableAllButtons();
+                WinPanel.SetActive(true);
                 resultText.text = "It's a Draw!";
                 return;
             }
@@ -107,12 +106,16 @@ public class TicTacToe_Logic : MonoBehaviour
         if (CheckForWin(npcSprite))
         {
             DisableAllButtons();
-            resultText.text = "NPC Wins!";
-            
+            WinPanel.SetActive(true);
+            resultText.text = "Virus Wins!";
+            return;
         }
         else if (CheckForDraw())
         {
+            DisableAllButtons();
+            WinPanel.SetActive(true);
             resultText.text = "It's a Draw!";
+            return;
         }
     }
 
@@ -169,6 +172,19 @@ public class TicTacToe_Logic : MonoBehaviour
         {
             button.interactable = false;
         }
+    }
+
+    public void RestartGame()
+    {
+        foreach (Button button in buttons)
+        {
+            button.image.sprite = defaultSprite;
+            button.interactable = false;
+        }
+
+        playerTurn = true;
+        WinPanel.SetActive(false);
+        chooseMarkerPanel.SetActive(true);
     }
 
 }

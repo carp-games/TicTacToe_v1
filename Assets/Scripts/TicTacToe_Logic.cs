@@ -18,41 +18,59 @@ public class TicTacToe_Logic : MonoBehaviour
 
     private bool playerTurn = true;
 
+
+    //Score tracking 
+    public int playerScore;
+    public int virusScore;
+    public GameObject playerScoreSprite;
+    public GameObject virusScoreSprite;
+    public Sprite[] scoreSprites;
+
+    //Round tracking
+    public int roundsPlayed;
+    public GameObject[] roundCountUI;
+    public GameObject[] roundResult;
+
+
+
     ////Win Panel
-    public GameObject WinPanel;
-    public TMP_Text resultText; 
+    // public GameObject resultPanel;
+    public GameObject goodEnding;
+    public GameObject badEnding;
 
     ////Start Screen Selection
     public GameObject chooseMarkerPanel;
 
+    // --------------------------------------------------------------------------------------------------
+
     private void Start()
     {
-        resultText.text = "Player: " + "\n" + "Virus: " ;
         chooseMarkerPanel.SetActive(true);
+        playerScore = 0;
+        virusScore = 0;
+        roundsPlayed = 0;
+        UpdateScoreImages();
     }
 
     public void ChoosePlayerX()
     {
         playerSprite = XSprite;
         npcSprite = OSprite;
-
-        Debug.Log("player selected X");
-
         chooseMarkerPanel.SetActive(false);
         EnableButtons();
-        
+        roundCountUI[roundsPlayed].SetActive(true);
+        //Debug.Log("player selected X");
+
     }
 
     public void ChoosePlayerO()
     {
         playerSprite = OSprite;
         npcSprite = XSprite;
-
-        Debug.Log("player selected O");
-
         chooseMarkerPanel.SetActive(false);
         EnableButtons();
-        
+        //Debug.Log("player selected O");
+
     }
 
     void EnableButtons()
@@ -60,6 +78,14 @@ public class TicTacToe_Logic : MonoBehaviour
         foreach (Button button in buttons)
         {
             button.interactable = true;
+        }
+    }
+
+    void DisableAllButtons()
+    {
+        foreach (Button button in buttons)
+        {
+            button.interactable = false;
         }
     }
 
@@ -73,21 +99,17 @@ public class TicTacToe_Logic : MonoBehaviour
             playerTurn = false;
             if (CheckForWin(playerSprite))
             {
-                DisableAllButtons();
-                WinPanel.SetActive(true);
-                resultText.text = "Player Wins!"; 
+                PlayerWins();
                 return;
             }
             else if (CheckForDraw())
             {
-                DisableAllButtons();
-                WinPanel.SetActive(true);
-                resultText.text = "It's a Draw!";
+                Draw();
                 return;
             }
 
             NPCMove();
-            
+
         }
     }
 
@@ -105,16 +127,12 @@ public class TicTacToe_Logic : MonoBehaviour
 
         if (CheckForWin(npcSprite))
         {
-            DisableAllButtons();
-            WinPanel.SetActive(true);
-            resultText.text = "Virus Wins!";
+            VirusWins();
             return;
         }
         else if (CheckForDraw())
         {
-            DisableAllButtons();
-            WinPanel.SetActive(true);
-            resultText.text = "It's a Draw!";
+            Draw();
             return;
         }
     }
@@ -135,21 +153,19 @@ public class TicTacToe_Logic : MonoBehaviour
         {
             if (buttons[col].image.sprite == marker && buttons[col + 3].image.sprite == marker && buttons[col + 6].image.sprite == marker)
             {
-                return true; 
+                return true;
             }
         }
 
         // Check diagonals
         if (buttons[0].image.sprite == marker && buttons[4].image.sprite == marker && buttons[8].image.sprite == marker)
         {
-            return true; 
+            return true;
         }
-
         if (buttons[2].image.sprite == marker && buttons[4].image.sprite == marker && buttons[6].image.sprite == marker)
         {
-            return true; 
+            return true;
         }
-
         return false; // No win condition met
     }
 
@@ -159,18 +175,86 @@ public class TicTacToe_Logic : MonoBehaviour
         {
             if (button.image.sprite == null || button.interactable)
             {
-                return false; // If any button is still empty or interactable, the game is not a draw
+                return false;
             }
         }
-        return true; // If all buttons are filled and there is no winner, it's a draw
+        return true;
     }
 
-    
-    void DisableAllButtons()
+
+    void PlayerWins()
     {
-        foreach (Button button in buttons)
+        playerScore++;
+        roundsPlayed++;
+        UpdateScoreImages();
+        DisableAllButtons();
+        StartCoroutine(ShowResult(roundResult[0]));
+    }
+
+    void VirusWins()
+    {
+        virusScore++;
+        roundsPlayed++;
+        UpdateScoreImages();
+        DisableAllButtons();
+        StartCoroutine(ShowResult(roundResult[1]));
+    }
+
+    void Draw()
+    {
+        roundsPlayed++;
+        UpdateScoreImages();
+        DisableAllButtons();
+        StartCoroutine(ShowResult(roundResult[2]));
+    }
+
+    void EndGame()
+    {
+        UpdateScoreImages();
+
+        if (playerScore >= 2)
         {
-            button.interactable = false;
+            goodEnding.SetActive(true);
+            Debug.Log("Good Ending");
+        }
+        else if (virusScore >= 2)
+        {
+            badEnding.SetActive(true);
+            Debug.Log("Bad Ending");
+        }
+        else if (roundsPlayed >= 3)
+        {
+            badEnding.SetActive(true);
+            Debug.Log("End of the game without clear winner");
+        }
+        else
+        {
+            RestartGame();
+        }
+    }
+
+    void UpdateScoreImages()
+    {
+        playerScoreSprite.GetComponent<Image>().sprite = scoreSprites[playerScore];
+        virusScoreSprite.GetComponent<Image>().sprite = scoreSprites[virusScore];
+    }
+
+
+    IEnumerator ShowResult(GameObject resultObject)
+    {
+        Debug.Log("coroutine started ---> shoing result");
+        resultObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        resultObject.SetActive(false);
+
+
+        if (roundsPlayed >= 3)
+        {
+            EndGame();
+        }
+        else
+        {
+            RestartGame();
         }
     }
 
@@ -179,12 +263,10 @@ public class TicTacToe_Logic : MonoBehaviour
         foreach (Button button in buttons)
         {
             button.image.sprite = defaultSprite;
-            button.interactable = false;
+            button.interactable = true;
         }
-
         playerTurn = true;
-        WinPanel.SetActive(false);
-        chooseMarkerPanel.SetActive(true);
+        roundCountUI[roundsPlayed].SetActive(true);
     }
 
 }

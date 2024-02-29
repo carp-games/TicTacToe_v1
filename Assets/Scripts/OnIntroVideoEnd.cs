@@ -8,6 +8,7 @@ public class OnIntroVideoEnd : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public GameObject VideoPanel;
+    public GameObject MainUI;
     
 
     void Start()
@@ -19,6 +20,7 @@ public class OnIntroVideoEnd : MonoBehaviour
     {
         if (vp == videoPlayer)
         {
+            MainUI.SetActive(true);
             gameObject.SetActive(false);
             VideoPanel.SetActive(false);
         }

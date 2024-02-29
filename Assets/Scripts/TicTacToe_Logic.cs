@@ -31,7 +31,7 @@ public class TicTacToe_Logic : MonoBehaviour
     public GameObject[] roundCountUI;
     public GameObject[] roundResult;
 
-
+    public GameObject annoyedVirus;
 
     ////Win Panel
     // public GameObject resultPanel;
@@ -93,6 +93,7 @@ public class TicTacToe_Logic : MonoBehaviour
     {
         if (button.interactable && playerTurn)
         {
+            annoyedVirus.SetActive(false);
             button.interactable = false;
             button.image.sprite = playerSprite;
             button.interactable = false;
@@ -186,6 +187,7 @@ public class TicTacToe_Logic : MonoBehaviour
     {
         playerScore++;
         roundsPlayed++;
+        annoyedVirus.SetActive(true);
         UpdateScoreImages();
         DisableAllButtons();
         StartCoroutine(ShowResult(roundResult[0]));

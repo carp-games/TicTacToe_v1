@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource buttonSFX;
     public AudioSource virusLostSFX;
+    public AudioSource computerHum;
     public AudioSource virusLaugh;
     public AudioSource glitch;
 
@@ -64,6 +65,10 @@ public class AudioManager : MonoBehaviour
         {
             virusLostSFX.Play();
         }
+        if (computerHum != null)
+        {
+            computerHum.Stop();
+        }
     }
 
     public void PlayLoseMusic()
@@ -81,6 +86,10 @@ public class AudioManager : MonoBehaviour
         if (virusLaugh != null)
         {
             virusLaugh.Play();
+        }
+        if(computerHum != null)
+        {
+            computerHum.Stop();
         }
     }
 

@@ -45,7 +45,6 @@ public class TicTacToe_Logic : MonoBehaviour
     ////Audio
     public AudioSource xoSFX;
     public AudioSource notificationSFX;
-    public AudioSource computerHum;
     public AudioSource scoreChange;
     public AudioSource roundWinSFX;
     public AudioSource roundLostSFX;
@@ -129,16 +128,7 @@ public class TicTacToe_Logic : MonoBehaviour
     {
         StartCoroutine(virusMove());
 
-        if (CheckForWin(npcSprite))
-        {
-            VirusWins();
-            return;
-        }
-        else if (CheckForDraw())
-        {
-            Draw();
-            return;
-        }
+        
     }
 
     private IEnumerator virusMove()
@@ -153,9 +143,17 @@ public class TicTacToe_Logic : MonoBehaviour
         xoSFX.Play();
         buttons[randomIndex].interactable = false;
         buttons[randomIndex].image.sprite = npcSprite;
+        if (CheckForWin(npcSprite))
+        {
+            VirusWins();
+        }
+        else if (CheckForDraw())
+        {
+            Draw();
+        }
         playerTurn = true;
 
-        
+
     }
 
     bool CheckForWin(Sprite marker)
@@ -208,6 +206,8 @@ public class TicTacToe_Logic : MonoBehaviour
         playerScore++;
         roundsPlayed++;
         annoyedVirus.SetActive(true);
+        notificationSFX.Play();
+        roundWinSFX.Play();
         UpdateScoreImages();
         DisableAllButtons();
         StartCoroutine(ShowResult(roundResult[0]));
@@ -217,6 +217,7 @@ public class TicTacToe_Logic : MonoBehaviour
     {
         virusScore++;
         roundsPlayed++;
+        roundLostSFX.Play();
         UpdateScoreImages();
         DisableAllButtons();
         StartCoroutine(ShowResult(roundResult[1]));
@@ -225,6 +226,7 @@ public class TicTacToe_Logic : MonoBehaviour
     void Draw()
     {
         roundsPlayed++;
+        roundDrawSFX.Play();
         UpdateScoreImages();
         DisableAllButtons();
         StartCoroutine(ShowResult(roundResult[2]));
@@ -237,16 +239,19 @@ public class TicTacToe_Logic : MonoBehaviour
         if (playerScore >= 2)
         {
             goodEnding.SetActive(true);
+            AudioManager.instance.PlayWinMusic();
             Debug.Log("Good Ending");
         }
         else if (virusScore >= 2)
         {
             badEnding.SetActive(true);
+            AudioManager.instance.PlayLoseMusic();
             Debug.Log("Bad Ending");
         }
         else if (roundsPlayed >= 3)
         {
             badEnding.SetActive(true);
+            AudioManager.instance.PlayLoseMusic();
             Debug.Log("End of the game without clear winner");
         }
         else
@@ -259,12 +264,13 @@ public class TicTacToe_Logic : MonoBehaviour
     {
         playerScoreSprite.GetComponent<Image>().sprite = scoreSprites[playerScore];
         virusScoreSprite.GetComponent<Image>().sprite = scoreSprites[virusScore];
+        scoreChange.Play();
     }
 
 
     IEnumerator ShowResult(GameObject resultObject)
     {
-       // Debug.Log("coroutine started ---> shoing result");
+        // Debug.Log("coroutine started ---> shoing result");
         resultObject.SetActive(true);
         yield return new WaitForSeconds(3f);
         resultObject.SetActive(false);

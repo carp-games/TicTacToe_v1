@@ -20,9 +20,11 @@ public class OnIntroVideoEnd : MonoBehaviour
     {
         if (vp == videoPlayer)
         {
+            AudioManager.instance.PlayMainMenuMusic();
             MainUI.SetActive(true);
             gameObject.SetActive(false);
             VideoPanel.SetActive(false);
+            
         }
     }
 }

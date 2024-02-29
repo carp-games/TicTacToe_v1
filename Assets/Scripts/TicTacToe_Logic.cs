@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 
 public class TicTacToe_Logic : MonoBehaviour
@@ -40,6 +41,15 @@ public class TicTacToe_Logic : MonoBehaviour
 
     ////Start Screen Selection
     public GameObject chooseMarkerPanel;
+
+    ////Audio
+    public AudioSource xoSFX;
+    public AudioSource notificationSFX;
+    public AudioSource computerHum;
+    public AudioSource scoreChange;
+    public AudioSource roundWinSFX;
+    public AudioSource roundLostSFX;
+    public AudioSource roundDrawSFX;
 
     // --------------------------------------------------------------------------------------------------
 
@@ -96,6 +106,7 @@ public class TicTacToe_Logic : MonoBehaviour
             annoyedVirus.SetActive(false);
             button.interactable = false;
             button.image.sprite = playerSprite;
+            xoSFX.Play();
             button.interactable = false;
             playerTurn = false;
             if (CheckForWin(playerSprite))
@@ -116,15 +127,7 @@ public class TicTacToe_Logic : MonoBehaviour
 
     void NPCMove()
     {
-        int randomIndex;
-        do
-        {
-            randomIndex = Random.Range(0, buttons.Length);
-        } while (!buttons[randomIndex].interactable);
-
-        buttons[randomIndex].interactable = false;
-        buttons[randomIndex].image.sprite = npcSprite;
-        playerTurn = true;
+        StartCoroutine(virusMove());
 
         if (CheckForWin(npcSprite))
         {
@@ -136,6 +139,23 @@ public class TicTacToe_Logic : MonoBehaviour
             Draw();
             return;
         }
+    }
+
+    private IEnumerator virusMove()
+    {
+        yield return new WaitForSeconds(2f);
+
+        int randomIndex;
+        do
+        {
+            randomIndex = Random.Range(0, buttons.Length);
+        } while (!buttons[randomIndex].interactable);
+        xoSFX.Play();
+        buttons[randomIndex].interactable = false;
+        buttons[randomIndex].image.sprite = npcSprite;
+        playerTurn = true;
+
+        
     }
 
     bool CheckForWin(Sprite marker)
@@ -244,7 +264,7 @@ public class TicTacToe_Logic : MonoBehaviour
 
     IEnumerator ShowResult(GameObject resultObject)
     {
-        Debug.Log("coroutine started ---> shoing result");
+       // Debug.Log("coroutine started ---> shoing result");
         resultObject.SetActive(true);
         yield return new WaitForSeconds(3f);
         resultObject.SetActive(false);

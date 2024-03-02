@@ -260,6 +260,16 @@ public class TicTacToe_Logic : MonoBehaviour
         }
     }
 
+    public void TryAgainButtonAudio()
+    {
+        AudioManager.instance.TryAgainAudio();
+    }
+
+    public void MainMenuButtonAudio()
+    {
+        AudioManager.instance.ExitToMenu();
+    }
+
     void UpdateScoreImages()
     {
         playerScoreSprite.GetComponent<Image>().sprite = scoreSprites[playerScore];

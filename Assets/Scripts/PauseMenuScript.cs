@@ -24,6 +24,11 @@ public class PauseMenuScript : MonoBehaviour
         }
     }
 
+    public void ButtonClickAudio()
+    {
+        AudioManager.instance.ButtonSFX();
+    }
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);

@@ -17,7 +17,10 @@ public class OnGoodVideo : MonoBehaviour
     {
         if (vp == videoPlayer)
         {
-            SceneManager.LoadScene("Menu");   
+            AudioManager.instance.winMusic.Stop();
+            AudioManager.instance.computerHum.Stop();
+            SceneManager.LoadScene("FileLoaded");   
+
         }
     }
 }

@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class OnIntroVideoEnd : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;
-    public GameObject VideoPanel;
-    public GameObject MainUI;
-    
+    public VideoPlayer videoPlayer;    
 
     void Start()
     {
@@ -20,11 +18,10 @@ public class OnIntroVideoEnd : MonoBehaviour
     {
         if (vp == videoPlayer)
         {
-            AudioManager.instance.PlayMainMenuMusic();
-            MainUI.SetActive(true);
-            gameObject.SetActive(false);
-            VideoPanel.SetActive(false);
-            
+            AudioManager.instance.StartMainGameAudio();
+            SceneManager.LoadScene("MainGameScene");
         }
+
+        
     }
 }

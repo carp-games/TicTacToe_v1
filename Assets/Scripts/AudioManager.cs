@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -16,23 +17,39 @@ public class AudioManager : MonoBehaviour
     public AudioSource computerHum;
     public AudioSource virusLaugh;
     public AudioSource glitch;
+    public AudioSource GifAudio;
+
+    public GameObject Music;
+    public GameObject SFX;
+
+    private bool musicOn = true;
+    private bool sfxOn = true;
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
+            Destroy(this.gameObject);
+            return;
         }
-
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    void Start()
-    {
-        if (openingTrack != null)
-        {
-            openingTrack.Play();
-        }
 
+
+    public void StartOpeningSceneMusic()
+    {
+        mainMenuMusic.Stop();
+        glitch.Play();
+        openingTrack.Play();
+    }
+
+    public void StartMainGameAudio()
+    {
+        openingTrack.Stop();
+        glitch.Stop();
+        mainMusic.Play();
     }
 
     public void PlayMainMenuMusic()
@@ -42,7 +59,7 @@ public class AudioManager : MonoBehaviour
             mainMenuMusic.Play();
             openingTrack.Stop();
         }
-        if(glitch != null)
+        if (glitch != null)
         {
             glitch.Stop();
         }
@@ -60,7 +77,7 @@ public class AudioManager : MonoBehaviour
         {
             winMusic.Play();
         }
-         
+
         if (virusLostSFX != null)
         {
             virusLostSFX.Play();
@@ -87,15 +104,82 @@ public class AudioManager : MonoBehaviour
         {
             virusLaugh.Play();
         }
-        if(computerHum != null)
+        if (computerHum != null)
         {
             computerHum.Stop();
         }
     }
 
+    public void TryAgainAudio()
+    {
+        loseMusic.Stop();
+        glitch.Stop();
+        computerHum.Play();
+        mainMusic.Play();
+    }
+
+    public void ExitToMenu()
+    {
+        mainMusic.Stop();
+        loseMusic.Stop();
+        glitch.Stop();
+        computerHum.Play();
+        mainMenuMusic.Play();
+    }
+
+    public void GoodEndingAudio()
+    {
+        winMusic.Stop();
+        virusLostSFX.Stop();
+        GifAudio.Play();
+    }
+    public void GoodEndingAudioStop()
+    {
+        GifAudio.Stop();
+        mainMenuMusic.Play();
+        computerHum.Play();
+    }
+
+
     public void ButtonSFX()
     {
         buttonSFX.Play();
+    }
+
+    public void TurnMusicOn()
+    {
+        if(musicOn == false)
+        {
+            Music.SetActive(true);
+            musicOn = true;
+        }
+    }
+
+    public void TurnMusicOff()
+    {
+        if (musicOn == true)
+        {
+            Music.SetActive(false);
+            musicOn = false;
+        }
+    }
+
+    public void TurnSFXOn()
+    {
+        if (sfxOn == false)
+        {
+            SFX.SetActive(true);
+            sfxOn = true;
+        }
+    }
+
+    public void TurnSFXOff()
+    {
+        if (sfxOn == true)
+        {
+            SFX.SetActive(false);
+            sfxOn = false;
+        }
     }
 
 }
